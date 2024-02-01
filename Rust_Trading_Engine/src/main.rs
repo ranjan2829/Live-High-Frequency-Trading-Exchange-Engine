@@ -1,8 +1,10 @@
 
+#[derive(Debug)]
 enum BidorAsk{
     Bid,
     Ask,
 }
+#[derive(Debug)]
 struct Price{
     integral:u64,
     fractional:u64,
@@ -40,5 +42,7 @@ impl Order{
     }
 }
 fn main(){
+    let price=Price::new(50.5);
+    println!("{:?}",price);
 
 }
