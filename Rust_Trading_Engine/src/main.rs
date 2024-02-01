@@ -24,9 +24,19 @@ impl Price{
 
 
 }
+
+#[derive(Debug)]
 struct Limit{
     price:Price,
     orders:Vec<Order>,
+}
+impl Limit{
+    fn new(price:f64)->Limit{
+        Limit{
+            price:Price::new(price),
+            orders:vec::new();
+        }
+    }
 }
 
 
@@ -43,6 +53,8 @@ impl Order{
 }
 fn main(){
     let price=Price::new(50.5);
+    let limit=Limit::new(65.3);
+    println!("{:?}",limit)
     println!("{:?}",price);
 
 }
