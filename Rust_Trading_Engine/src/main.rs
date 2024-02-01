@@ -10,6 +10,7 @@ struct Price{
     fractional:u64,
     scalar:u64,
 }
+
 impl Price{
     fn new(price:f64)->Price{
         let scalar=100000;
@@ -34,10 +35,11 @@ impl Limit{
     fn new(price:f64)->Limit{
         Limit{
             price:Price::new(price),
-            orders:vec::new();
+            orders:Vec::new(),
         }
     }
 }
+#[derive(Debug)]
 
 
 struct Order{
@@ -52,9 +54,9 @@ impl Order{
     }
 }
 fn main(){
-    let price=Price::new(50.5);
+    //let price=Price::new(50.5);
     let limit=Limit::new(65.3);
-    println!("{:?}",limit)
-    println!("{:?}",price);
+    println!("{:?}",limit);
+    //println!("{:?}",price);
 
 }
