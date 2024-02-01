@@ -38,6 +38,9 @@ impl Limit{
             orders:Vec::new(),
         }
     }
+    fn add_order(&mut self,order:Order){
+        self.orders.push(order);
+    }
 }
 #[derive(Debug)]
 
@@ -55,8 +58,13 @@ impl Order{
 }
 fn main(){
     //let price=Price::new(50.5);
-    let limit=Limit::new(65.3);
-    println!("{:?}",limit);
+    let mut limit=Limit::new(1200.0);
+    //println!("{:?}",limit);
     //println!("{:?}",price);
+    let buy_order=Order::new(BidorAsk::Bid,1199.5);
+    let sell_order=Order::new(BidorAsk::Ask,1202.5);
+    limit.add_order(buy_order);
+    limit.add_order(sell_order);
+    println!("{:?}",limit);
 
 }
