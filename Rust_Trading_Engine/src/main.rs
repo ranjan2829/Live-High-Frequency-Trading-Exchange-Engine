@@ -1,8 +1,20 @@
-
+use std::{collections::HashMap};
 #[derive(Debug)]
 enum BidorAsk{
     Bid,
     Ask,
+}
+struct OrderBook{
+    ask:HashMap<Price,Limit>,
+    bid:HashMap<Price,Limit>,
+}
+impl OrderBook{
+    fn new()->OrderBook{
+        OrderBook{
+            ask:HashMap::new(),
+            bid:HashMap::new(),
+        }
+    }
 }
 #[derive(Debug)]
 struct Price{
