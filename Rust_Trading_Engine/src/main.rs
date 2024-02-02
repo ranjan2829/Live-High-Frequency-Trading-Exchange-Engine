@@ -20,9 +20,9 @@ impl OrderBook{
             BidorAsk::Bid => {
                 let price=Price::new(price);
                 let limit =self.bid.get_mut(&price);
-                match(limit){
-                    Some(limit) =>println!("Already got a n limit !");
-                    None => println!(" new limit to be created");
+                match (limit){
+                    Some(limit) =>println!("Already got a n limit !"),
+                    None => println!(" new limit to be created"),
                 }
 
             }
@@ -30,7 +30,7 @@ impl OrderBook{
         }
     }
 }
-#[derive(Debug)]
+#[derive(Debug,Eq,Hash,PartialEq)]
 struct Price{
     integral:u64,
     fractional:u64,
