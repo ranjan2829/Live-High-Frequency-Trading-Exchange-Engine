@@ -15,6 +15,20 @@ impl OrderBook{
             bid:HashMap::new(),
         }
     }
+    fn add_order(&mut self,price:f64,order:Order){
+        match order.bid_or_ask{
+            BidorAsk::Bid => {
+                let price=Price::new(price);
+                let limit =self.bid.get_mut(&price);
+                match(limit){
+                    Some(limit) =>println!("Already got a n limit !");
+                    None => println!(" new limit to be created");
+                }
+
+            }
+            BidorAsk::Ask=>{}
+        }
+    }
 }
 #[derive(Debug)]
 struct Price{
