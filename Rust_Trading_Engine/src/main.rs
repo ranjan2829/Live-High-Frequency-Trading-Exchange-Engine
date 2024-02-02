@@ -4,6 +4,7 @@ enum BidorAsk{
     Bid,
     Ask,
 }
+#[derive(Debug)]
 struct OrderBook{
     ask:HashMap<Price,Limit>,
     bid:HashMap<Price,Limit>,
@@ -84,13 +85,16 @@ impl Order{
 }
 fn main(){
     //let price=Price::new(50.5);
-    let mut limit=Limit::new(1200.0);
+    //let mut limit=Limit::new(1200.0);
     //println!("{:?}",limit);
     //println!("{:?}",price);
     let buy_order=Order::new(BidorAsk::Bid,1199.5);
     let sell_order=Order::new(BidorAsk::Ask,1202.5);
-    limit.add_order(buy_order);
-    limit.add_order(sell_order);
-    println!("{:?}",limit);
+    //limit.add_order(buy_order);
+    //limit.add_order(sell_order);
+   // println!("{:?}",limit);
+    let mut orderbook=OrderBook::new();
+    orderbook.add_order(1199.5,buy_order);
+    println!("{:?}",orderbook);
 
 }
