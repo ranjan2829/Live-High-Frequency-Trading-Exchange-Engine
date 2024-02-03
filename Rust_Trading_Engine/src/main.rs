@@ -92,7 +92,7 @@ fn main(){
     let sell_order=Order::new(BidorAsk::Ask,1202.5);
     //limit.add_order(buy_order);
     //limit.add_order(sell_order);
-   // println!("{:?}",limit);
+    println!("{:?}",limit);
     let mut orderbook=OrderBook::new();
     orderbook.add_order(1199.5,buy_order);
     println!("{:?}",orderbook);
