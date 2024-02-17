@@ -1,7 +1,7 @@
 #include "macros.h"
 
 int main() {
-    int value = 10;
+    int value = 9;
 
     // Example of ASSERT:
     ASSERT(value > 0, "Value should be positive!");
