@@ -7,5 +7,6 @@ include_directories(.)
 
 add_executable(HFT_Developer_Codes
         sample.cpp
-        sample.h
-        "Low Latency Building Blocks/macros.h")
+        main.h
+        "Low Latency Building Blocks/macros.h"
+        "Low Latency Building Blocks/main.cpp")

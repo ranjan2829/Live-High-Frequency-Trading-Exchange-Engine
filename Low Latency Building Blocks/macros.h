@@ -1,19 +1,20 @@
 #pragma once
-#include <cstring>
+
 #include <iostream>
+#include <string>
+#include <cstdlib>
 
-#define LIKELY(x) __builtin_expect(!!(x),1)
-#define UNLIKELY(x) __builtin_expect(!!(x),0)
-inline auto ASSERT(bool cond ,const std::string &msg) noexcept{
-    if(UNLIKELY(!cond)){
-        std::cerr<<"ASSERT:"<<msg<<std::endl;
-        exit(EXIT_FAILURE);
+#define LIKELY(x) __builtin_expect(!!(x), 1)
+#define UNLIKELY(x) __builtin_expect(!!(x), 0)
 
+void ASSERT(bool cond, const std::string &msg) {
+    if (!cond) {
+        std::cerr << msg << std::endl;
+        std::abort();
     }
-
 }
-inline auto FATAL(const std::string &msg)noexcept{
-    std::cerr<<"FATAL :"<<msg<<std::endl;
-    exit(EXIT_FAILURE);
 
+void FATAL(const std::string &msg) {
+    std::cerr << "FATAL : " << msg << std::endl;
+    exit(EXIT_FAILURE);
 }
