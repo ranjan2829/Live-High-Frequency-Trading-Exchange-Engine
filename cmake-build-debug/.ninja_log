@@ -1,6 +1,5 @@
 # ninja log v5
 4502	4915	1707044270268429316	HFT_Developer_Codes	527cb1624e55d49f
-9	4502	1707044269856956881	CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o	8e189d36c1ae0f7
-0	74	1708173117740295223	build.ninja	df8d7c9352ddcb8d
+0	74	1708195397862007561	build.ninja	df8d7c9352ddcb8d
 0	241	1708173117986587949	CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o	8e189d36c1ae0f7
 0	604	1708173118350014617	CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o	7fabcdc56a798c59

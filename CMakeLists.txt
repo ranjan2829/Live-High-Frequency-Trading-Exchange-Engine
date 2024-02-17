@@ -9,4 +9,5 @@ add_executable(HFT_Developer_Codes
         sample.cpp
         main.h
         "Low Latency Building Blocks/macros.h"
-        "Low Latency Building Blocks/main.cpp")
+        "Low Latency Building Blocks/main.cpp"
+        "Low Latency Building Blocks/thread_untils.h")
