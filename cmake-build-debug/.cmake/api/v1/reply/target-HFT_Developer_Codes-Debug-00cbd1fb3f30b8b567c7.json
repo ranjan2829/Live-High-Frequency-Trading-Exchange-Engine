@@ -103,7 +103,8 @@
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				1
+				1,
+				2
 			]
 		}
 	],
@@ -118,6 +119,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "sample.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Low Latency Building Blocks/macros.h",
 			"sourceGroupIndex" : 1
 		}
 	],
