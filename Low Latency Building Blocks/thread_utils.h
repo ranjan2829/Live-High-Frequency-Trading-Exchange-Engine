@@ -1,33 +1,21 @@
-// thread_utils.h
 #pragma once
 
 #include <iostream>
+#include <atomic>
 #include <thread>
+#include <unistd.h>
+#include <sched.h>      // Add this for cpu_set_t
+#include <sys/syscall.h>
 #include <chrono>
-#include <string>
 
 namespace Common {
-    // Empty implementation for setThreadCore
-    inline bool setThreadCore(int core_id) noexcept {
-        // No actual implementation, returns true by default
-        return true;
-    }
+    // Set affinity for current thread to be pinned to the provided core_id.
+    bool setThreadCore(int core_id) noexcept;
 
+    // Creates a thread instance, sets affinity on it, assigns it a name and
+    // passes the function to be run on that thread as well as the arguments to the function.
     template<typename T, typename... A>
-    inline auto createAndStartThread(int core_id, const std::string &name, T &&func, A &&... args) noexcept {
-        auto t = new std::thread([&]() {
-            if (core_id >= 0 && !setThreadCore(core_id)) {
-                std::cerr << "Failed to set core affinity for " << name << std::endl;
-                exit(EXIT_FAILURE);
-            }
-            std::cout << "Set core affinity for " << name << std::endl;
-
-            std::forward<T>(func)((std::forward<A>(args))...);
-        });
-
-        using namespace std::literals::chrono_literals;
-        std::this_thread::sleep_for(1s);
-
-        return t;
-    }
+    std::thread* createAndStartThread(int core_id, const std::string &name, T &&func, A &&... args) noexcept;
 }
+
+#include "thread_utils.tpp" // Include the implementation file where the function definitions are located
