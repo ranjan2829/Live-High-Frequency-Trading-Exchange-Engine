@@ -15,4 +15,17 @@ namespace Common{
 
 
     }
+    //creates a thread instance  ,set affinity on it assigns it a name
+    //passees the function to be run on that thread as well as the arguments to the function
+    temple<typename T,typename... A>
+    inline auto CreateAndStartThread(int core_id,const std::string &name,T &&func,A &&... args){
+        auto t =new std::thread([&](){
+            if(core_id >=0 && !setThreadCore(core_id)){
+                std::cer<<"failed to set core affinity for "<<name <<" "<<pthread_self() <<"to "<<core_id <<std::endl;
+                exit(EXIT_FAILURE);
+            }
+            std::cerr<"set core affinity for "<<name " "<<pthread_self()<<"to "<<core_id<<std::endl;
+            std::forward<T>(func)((std::forward<A>(args))...);
+        }
+    }
 }
