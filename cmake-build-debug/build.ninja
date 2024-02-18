@@ -63,6 +63,13 @@ build CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o:
   OBJECT_DIR = CMakeFiles/HFT_Developer_Codes.dir
   OBJECT_FILE_DIR = CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks
 
+build CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o: CXX_COMPILER__HFT_Developer_Codes_unscanned_Debug /Users/ranjanshahajishitole/CLionProjects/HFT-Developer-Codes/Low$ Latency$ Building$ Blocks/thread.cpp || cmake_object_order_depends_target_HFT_Developer_Codes
+  DEP_FILE = CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/ranjanshahajishitole/CLionProjects/HFT-Developer-Codes/.
+  OBJECT_DIR = CMakeFiles/HFT_Developer_Codes.dir
+  OBJECT_FILE_DIR = CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target HFT_Developer_Codes
@@ -71,7 +78,7 @@ build CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o:
 #############################################
 # Link the executable HFT_Developer_Codes
 
-build HFT_Developer_Codes: CXX_EXECUTABLE_LINKER__HFT_Developer_Codes_Debug CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o
+build HFT_Developer_Codes: CXX_EXECUTABLE_LINKER__HFT_Developer_Codes_Debug CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   OBJECT_DIR = CMakeFiles/HFT_Developer_Codes.dir
   POST_BUILD = :
