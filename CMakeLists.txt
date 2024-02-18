@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.10)  # Set a valid minimum required version
+
 project(HFT_Developer_Codes)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -11,5 +12,4 @@ add_executable(HFT_Developer_Codes
         "Low Latency Building Blocks/macros.h"
         "Low Latency Building Blocks/main.cpp"
         "Low Latency Building Blocks/thread_utils.h"
-        "Low Latency Building Blocks/thread.cpp"
-        "Low Latency Building Blocks/thread_utils.h")
+        "Low Latency Building Blocks/thread.cpp")
