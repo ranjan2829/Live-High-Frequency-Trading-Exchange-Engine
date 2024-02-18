@@ -1,21 +1,25 @@
-#include "thread_utils.h" // Include the header file where the Common namespace is defined
+#include "thread_utils.h"
+#include <iostream> // Include for std::cout
+#include <chrono>   // Include for std::chrono_literals
 
-// Function to be executed by the thread
-void printMessage(const std::string& message) {
-    std::cout << "Thread message: " << message << std::endl;
+void dummyFunction(int a, int b, bool sleep) {
+    std::cout << "dummyFunction(" << a << "," << b << ")" << std::endl;
+    std::cout << "dummyFunction output=" << a + b << std::endl;
+    if (sleep) {
+        std::cout << "dummyFunction sleeping..." << std::endl;
+        using namespace std::chrono_literals;
+        std::this_thread::sleep_for(5s);
+    }
+    std::cout << "dummyFunction done." << std::endl;
 }
 
-int main() {
-    // Set the CPU core ID for the thread (change as needed)
-    int core_id = 0;
-
-    // Create and start a thread with core affinity
-    auto myThread = Common::createAndStartThread(core_id, "My Thread", printMessage, "Hello from the thread!");
-
-    // Wait for the thread to finish
-    myThread->join();
-
-    std::cout << "Main thread: Thread finished." << std::endl;
-
+int main(int, char **) {
+    using namespace Common;
+    auto t1 = createAndStartThread(-1, "dummyFunction1", dummyFunction, 12, 21, false);
+    auto t2 = createAndStartThread(1, "dummyFunction2", dummyFunction, 15, 51, true);
+    std::cout << "main waiting for threads to be done." << std::endl;
+    t1->join();
+    t2->join();
+    std::cout << "main exiting." << std::endl;
     return 0;
 }
