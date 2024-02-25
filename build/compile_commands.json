@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/workspaces/HFT-Developer-Codes/build",
+  "command": "/usr/bin/clang++   -I/workspaces/HFT-Developer-Codes/.  -g   -std=gnu++14 -o CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o -c /workspaces/HFT-Developer-Codes/sample.cpp",
+  "file": "/workspaces/HFT-Developer-Codes/sample.cpp"
+},
+{
+  "directory": "/workspaces/HFT-Developer-Codes/build",
+  "command": "/usr/bin/clang++   -I/workspaces/HFT-Developer-Codes/.  -g   -std=gnu++14 -o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o -c \"/workspaces/HFT-Developer-Codes/Low Latency Building Blocks/main.cpp\"",
+  "file": "/workspaces/HFT-Developer-Codes/Low Latency Building Blocks/main.cpp"
+},
+{
+  "directory": "/workspaces/HFT-Developer-Codes/build",
+  "command": "/usr/bin/clang++   -I/workspaces/HFT-Developer-Codes/.  -g   -std=gnu++14 -o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o -c \"/workspaces/HFT-Developer-Codes/Low Latency Building Blocks/thread.cpp\"",
+  "file": "/workspaces/HFT-Developer-Codes/Low Latency Building Blocks/thread.cpp"
+}
+]
