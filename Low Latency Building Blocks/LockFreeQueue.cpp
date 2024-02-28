@@ -1,30 +1,49 @@
-#include "mem_pool.h"
+#include "thread_utils.h"
+#include "LockFreeQueues.h"
 
 struct MyStruct {
-  int d_[3];
+    int d_[3];
 };
 
-int main(int, char **) {
-  using namespace Common;
+using namespace Common;
 
-  MemPool<double> prim_pool(50);
-  MemPool<MyStruct> struct_pool(50);
+auto consumeFunction(LFQueue<MyStruct>* lfq) {
+    using namespace std::literals::chrono_literals;
+    std::this_thread::sleep_for(5s);
 
-  for(auto i = 0; i < 50; ++i) {
-    auto p_ret = prim_pool.allocate(i);
-    auto s_ret = struct_pool.allocate(MyStruct{i, i+1, i+2});
+    while (lfq->size()) {
+        const auto d = lfq->getNextToRead();
+        lfq->updateReadIndex();
 
-    std::cout << "prim elem:" << *p_ret << " allocated at:" << p_ret << std::endl;
-    std::cout << "struct elem:" << s_ret->d_[0] << "," << s_ret->d_[1] << "," << s_ret->d_[2] << " allocated at:" << s_ret << std::endl;
+        std::cout << "consumeFunction read elem: " << d->d_[0] << "," << d->d_[1] << "," << d->d_[2]
+                  << " lfq-size: " << lfq->size() << std::endl << std::endl;
 
-    if(i % 5 == 0) {
-      std::cout << "deallocating prim elem:" << *p_ret << " from:" << p_ret << std::endl;
-      std::cout << "deallocating struct elem:" << s_ret->d_[0] << "," << s_ret->d_[1] << "," << s_ret->d_[2] << " from:" << s_ret << std::endl;
-
-      prim_pool.deallocate(p_ret);
-      struct_pool.deallocate(s_ret);
+        std::this_thread::sleep_for(1s);
     }
-  }
 
-  return 0;
+    std::cout << "consumeFunction exiting." << std::endl << std::endl;
+}
+
+int main(int, char**) {
+    LFQueue<MyStruct> lfq(20);
+
+    auto ct = createAndStartThread(-1, "", consumeFunction, &lfq);
+
+    for (auto i = 0; i < 50; ++i) {
+        const MyStruct d{i, i * 10, i * 100};
+        *(lfq.getNextToWriteTo()) = d;
+        lfq.updateWriteIndex();
+
+        std::cout << "main constructed elem: " << d.d_[0] << "," << d.d_[1] << "," << d.d_[2]
+                  << " lfq-size: " << lfq.size() << std::endl << std::endl;
+
+        using namespace std::literals::chrono_literals;
+        std::this_thread::sleep_for(1s);
+    }
+
+    ct->join();
+
+    std::cout << "main exiting." << std::endl;
+
+    return 0;
 }
