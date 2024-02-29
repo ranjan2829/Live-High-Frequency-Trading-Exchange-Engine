@@ -22,9 +22,41 @@ namespace Common{
     };
     struct LogElement{
         LogType type_=LogType::CHAR;
+        union{
+            char x;
+            int i;
+            long l;
+            long long ll;
+            unsigned u;
+            unsigned long ul;
+            unsignec long long ull;
+            float f;
+            double d;
+
+        }u_;
+
         
-    }
+    };
+    class Logger final{
+        public:
+        auto flushQueue() noexcept{
+            while(running_){
 
-    }
+            }
+        }
+        private:
+        const std::string file_name;
+        std::ofstream file_;
+        LFQueue<LogElement> queue_;
+        std::atomic<bool> running_={true};
+        std::thread *logger_thread=nullptr;
 
-}
+    };
+
+
+ }
+
+
+
+    
+
