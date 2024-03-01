@@ -105,45 +105,65 @@ namespace Common {
 
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont int value) noexcept{
+            pushValue(LogElement{LogType::INTEGER,{.i=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont long value) noexcept{
+            pushValue(LogElement{LogType::LONG_INTEGER,{.l=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont long long value) noexcept{
+            pushValue(LogElement{LogType::LONG_LONG_INTEGER,{.ll=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont unsigned value) noexcept{
+            pushValue(LogElement{LogType:UNSIGNED_INTEGER,{.u=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont unsigned long value) noexcept{
+            pushValue(LogElement{LogType::UNSIGNED_LONG_INTEGER,{.ul=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont unsigned long long value) noexcept{
+            pushValue(LogElement{LogType::UNSIGNED_LONG_LONG_INTEGER,{.ul=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont float value) noexcept{
+            pushValue(LogElement{LogType::FLOAT,{.f=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont double value) noexcept{
+            pushValue(LogElement{LogType::DOUBLE,{.d=value}});
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont char *value) noexcept{
+            while(*value){
+                pushValue(*value);
+                ++value;
+            }
 
         }
-        auto pushValue(cont char value) noexcept{
-            pushValue(LogElement{LogType::CHAR,{.c=value}});
+        auto pushValue(cont std:: string &value) noexcept{
+            pushValue(value.c_str());
 
+        }
+        template<typename T,typename A>
+        auto log (const char *s,const T &value,A..args) noexcept{
+            while(*s){
+                if(*s=='%'){
+                    if(UNLIKELY(*(s+1)=='%')){
+                        ++s;
+                    }
+                    else{
+                        pushValue(value);
+                        log(s+1,args...);
+                        return;
+                    }
+                }
+                pushValue(*s++);
+            }
+            FATAL("extra arguments provided to log()");
         }
 
         Logger() = delete;
