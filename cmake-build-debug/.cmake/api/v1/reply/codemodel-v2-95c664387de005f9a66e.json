@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.27"
+						"string" : "3.10"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "HFT_Developer_Codes::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-HFT_Developer_Codes-Debug-223df53d6dd0d3616e2d.json",
+					"jsonFile" : "target-HFT_Developer_Codes-Debug-3bd6545f8a0bf36575e1.json",
 					"name" : "HFT_Developer_Codes",
 					"projectIndex" : 0
 				}

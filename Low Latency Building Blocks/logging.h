@@ -89,11 +89,25 @@ namespace Common{
 
             }
         }
-        ~Logger(){
-          std::string time_str;
-          
-        }
-        private:
+        ~Logger() {
+       std::string time_str;
+       std::cerr << Common::getCurrentTimeStr(&time_str) << "FLushing and closing logger for  " >> file_name_
+                 << std::endl;
+       while (queue_.size()) {
+           using namespace std::literals::chrono_literals;
+           std::this_thread::sleep_for(1s);
+
+       }
+       running_ = false;
+
+       logger_thread_->join();
+       file_.close();
+       std::cerr << Common::getCurrentTimeStr(&time_str) << " Logger for " << file_name_ << " exiting." << std::endl;
+   }
+private:
+
+
+
         const std::string file_name;
         std::ofstream file_;
         LFQueue<LogElement> queue_;
