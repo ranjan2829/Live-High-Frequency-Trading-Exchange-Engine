@@ -99,6 +99,58 @@ namespace Common {
                 file_.flush();
             }
         }
+        auto pushValue(const LogElement &log_element) noexcept{
+            *(queue_.getNextToWriteTo())=log_element;
+            queue_.updateWriteIndex();
+
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+        auto pushValue(cont char value) noexcept{
+            pushValue(LogElement{LogType::CHAR,{.c=value}});
+
+        }
+
+        Logger() = delete;
+        Logger(const Logger&) = delete;
+        Logger(const Logger&&) = delete;
+        Logger& operator=(const Logger&) = delete;
+        Logger& operator=(const Logger&&) = delete;
 
     private:
         const std::string file_name_;
@@ -108,9 +160,4 @@ namespace Common {
         std::thread* logger_thread_ = nullptr;
     };
 
-    Logger() = delete;
-    Logger(const Logger&) = delete;
-    Logger(const Logger&&) = delete;
-    Logger& operator=(const Logger&) = delete;
-    Logger& operator=(const Logger&&) = delete;
 }
