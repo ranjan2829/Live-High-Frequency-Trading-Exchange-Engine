@@ -89,6 +89,10 @@ namespace Common{
 
             }
         }
+        ~Logger(){
+          std::string time_str;
+          
+        }
         private:
         const std::string file_name;
         std::ofstream file_;
