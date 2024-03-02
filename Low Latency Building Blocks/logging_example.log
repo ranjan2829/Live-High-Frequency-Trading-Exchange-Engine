@@ -1,0 +1,4 @@
+Logging a char:d an int:3 and an unsigned:65
+Logging a float:3.4 and a double:34.56
+Logging a C-string:'test C-string'
+Logging a string:'test string'
