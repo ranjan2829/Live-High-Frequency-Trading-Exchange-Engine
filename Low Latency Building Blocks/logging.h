@@ -3,6 +3,8 @@
 #include <string>
 #include <fstream>
 #include <cstdio>
+#include <sched.h>
+
 
 #include "macros.h"
 #include "LockFreeQueues.h"
