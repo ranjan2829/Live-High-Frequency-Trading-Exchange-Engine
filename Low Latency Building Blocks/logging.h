@@ -5,7 +5,7 @@
 #include <cstdio>
 
 #include "macros.h"
-#include "lf_queue.h"
+#include "LockFreeQueues.h"
 #include "thread_utils.h"
 #include "time_utils.h"
 
