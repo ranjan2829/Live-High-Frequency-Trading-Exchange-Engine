@@ -45,10 +45,19 @@ namespace Common{
         char buf[NI_MAXHOST]={'\0'};
         ifaddrs *ifaddr =nullptr;
         if(getifaddrs(&ifaddr)!=-1){
-            if(ifaddrs *ifa =ifaddr;ifa;ifa=ifa->ifa_next){
-                
+            for(ifaddrs *ifa =ifaddr;ifa;ifa=ifa->ifa_next){
+                if(ifa->ifa_addr && ifa->ifa_addr->sa_family==AF_INET && iface==ifa->ifa_name){
+                    getnameinfo(ifa->ifa_addr,sizeof(sockaddr_in),buf,sizeof(buf),NULL,0,NI_NUMERICHOST);
+                    break;
+
+                }
+
+
+
             }
+            freeifaddrs(ifaddr);
         }
+        return buf;
 
 
     }
