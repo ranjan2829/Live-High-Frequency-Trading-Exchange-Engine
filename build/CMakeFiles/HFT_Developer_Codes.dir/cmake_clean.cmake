@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/logger.cpp.o"
   "CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o"
   "CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o"
   "CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o"

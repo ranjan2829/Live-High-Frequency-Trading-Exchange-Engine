@@ -123,6 +123,33 @@ HFT_Developer_Codes/fast:
 	$(MAKE) -f CMakeFiles/HFT_Developer_Codes.dir/build.make CMakeFiles/HFT_Developer_Codes.dir/build
 .PHONY : HFT_Developer_Codes/fast
 
+Low_Latency_Building_Blocks/logger.o: Low_Latency_Building_Blocks/logger.cpp.o
+
+.PHONY : Low_Latency_Building_Blocks/logger.o
+
+# target to build an object file
+Low_Latency_Building_Blocks/logger.cpp.o:
+	$(MAKE) -f CMakeFiles/HFT_Developer_Codes.dir/build.make CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/logger.cpp.o
+.PHONY : Low_Latency_Building_Blocks/logger.cpp.o
+
+Low_Latency_Building_Blocks/logger.i: Low_Latency_Building_Blocks/logger.cpp.i
+
+.PHONY : Low_Latency_Building_Blocks/logger.i
+
+# target to preprocess a source file
+Low_Latency_Building_Blocks/logger.cpp.i:
+	$(MAKE) -f CMakeFiles/HFT_Developer_Codes.dir/build.make CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/logger.cpp.i
+.PHONY : Low_Latency_Building_Blocks/logger.cpp.i
+
+Low_Latency_Building_Blocks/logger.s: Low_Latency_Building_Blocks/logger.cpp.s
+
+.PHONY : Low_Latency_Building_Blocks/logger.s
+
+# target to generate assembly for a file
+Low_Latency_Building_Blocks/logger.cpp.s:
+	$(MAKE) -f CMakeFiles/HFT_Developer_Codes.dir/build.make CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/logger.cpp.s
+.PHONY : Low_Latency_Building_Blocks/logger.cpp.s
+
 Low_Latency_Building_Blocks/main.o: Low_Latency_Building_Blocks/main.cpp.o
 
 .PHONY : Low_Latency_Building_Blocks/main.o
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... HFT_Developer_Codes"
+	@echo "... Low_Latency_Building_Blocks/logger.o"
+	@echo "... Low_Latency_Building_Blocks/logger.i"
+	@echo "... Low_Latency_Building_Blocks/logger.s"
 	@echo "... Low_Latency_Building_Blocks/main.o"
 	@echo "... Low_Latency_Building_Blocks/main.i"
 	@echo "... Low_Latency_Building_Blocks/main.s"

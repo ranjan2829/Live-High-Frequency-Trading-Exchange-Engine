@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/workspaces/HFT-Developer-Codes/Low Latency Building Blocks/logger.cpp" "/workspaces/HFT-Developer-Codes/build/CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/logger.cpp.o"
   "/workspaces/HFT-Developer-Codes/Low Latency Building Blocks/main.cpp" "/workspaces/HFT-Developer-Codes/build/CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o"
   "/workspaces/HFT-Developer-Codes/Low Latency Building Blocks/thread.cpp" "/workspaces/HFT-Developer-Codes/build/CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o"
   "/workspaces/HFT-Developer-Codes/sample.cpp" "/workspaces/HFT-Developer-Codes/build/CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o"

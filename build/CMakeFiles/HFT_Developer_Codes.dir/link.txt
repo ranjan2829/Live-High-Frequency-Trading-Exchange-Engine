@@ -1,1 +1,1 @@
-/usr/bin/clang++  -g   CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o  -o HFT_Developer_Codes 
+/usr/bin/clang++  -g   CMakeFiles/HFT_Developer_Codes.dir/sample.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/main.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/thread.cpp.o CMakeFiles/HFT_Developer_Codes.dir/Low_Latency_Building_Blocks/logger.cpp.o  -o HFT_Developer_Codes 
