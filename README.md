@@ -1,5 +1,5 @@
 # HFT-Developer-Codes 🚀
-
+#currently my exams goin on so break in Quant finance 
 Welcome to the HFT-Developer-Codes repository! This repository is dedicated to hardcore high-frequency trading (HFT) codes, including FPGA implementations and other components.
 
 ## Overview 📋
