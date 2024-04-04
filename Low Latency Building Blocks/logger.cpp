@@ -14,7 +14,7 @@ int main(int, char **) {
     float f = 3.4;
     double d = 34.56;
     const char* s = "test C-string";
-    std::string ss = "test string";
+    std::string ss = "test string"; 
 
     Logger logger("logging_example.log");
 
