@@ -71,3 +71,26 @@ inline auto join(int fd) -> bool {
   return (setsockopt(fd, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) !=
           -1);
 }
+[[nodiscard]] inline auto createSocket(Logger &logger ,const SocketCfg& socket_cfg)->int{
+  std::string time_str;
+}  
+const auto ip=socket_cfg.ip_.empty() ? getIfaceIP(socket_cfg.iface_):socket_cfg.ip_;
+logger.log("%:%%() % cfg:%\n",__FILE__,__LINE__,__FUNCTION__,Common::getCurrentTimeStr(&time_str),socket_cfg.toString());
+const int input_flags=(socket_cfg.is_listening_ ? AI_PASSIVE:0)|(AI_NUMERICHOST|AI_NUMERICSERV);
+const addrinfo hints{input_flags,AF_INET,socket_cfg.is_udp_ ? SOCK_DGRAM,socket_cfg.is_udp_ ? IPPROTO_TCP : IPPROTO_TCP,0,0,nullptr,nullptr};
+addrinfo *result =nullptr;
+const auto rc=getaddrinfo(ip.c_str(),std::to_string(socket_cfg.port_).c_str(),&hints,&result);
+
+int rc;
+ASSERT(!rc,"getaddrinfo() failed .error :" + std::string(gai_strerror(rc)) + "error no :" + strerror(errno));
+int socket_fd=-1;
+  int one=1;
+  for(addrinfo *rp =result;rp;rp=rp->ai_next){
+    ASSERT((socket_fd=socket(rp->ai_socktype,rp->ai_protocol))!=-1,"socket() failed . error no"+std::string(strerror(errno)));
+    
+  }
+  
+  
+
+  
+}
