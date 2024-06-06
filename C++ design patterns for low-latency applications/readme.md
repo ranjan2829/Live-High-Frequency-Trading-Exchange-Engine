@@ -1,1 +1,0 @@
-## This would contain the HFT codes on LMAX Disruptor and the Low Latency Design Patterns in CPP
