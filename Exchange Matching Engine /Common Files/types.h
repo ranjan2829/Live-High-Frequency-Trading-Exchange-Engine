@@ -25,7 +25,7 @@ namespace Common{
     constexpr auto TickerID_Invalid=std::numeric_limits<<TickerID>>::max();
     inline auto TickerToString(TickerID ticker)->std::string{
         if(UNLIKELY(ticker==TickerID_Invalid)){
-            return "IVALID";
+            return "INVALID";
         }
         return std::to_string(ticker);
     }
@@ -33,7 +33,7 @@ namespace Common{
     constexpr auto ClientID_Invalid=std::numeric_limits<<ClientID>>::max();
     inline auto ClientToString(ClientID client)->std::string{
         if(UNLIKELY(clientr==ClientID_Invalid)){
-            return "IVALID";
+            return "INVALID";
         }
         return std::to_string(client);
     }
@@ -41,7 +41,7 @@ namespace Common{
     constexpr auto Price_Invalid=std::numeric_limits<<Price>>::max();
     inline auto PriceToString(Price price)->std::string{
         if(UNLIKELY(price==Price_Invalid)){
-            return "IVALID";
+            return "INVALID";
         }
         return std::to_string(price);
     }
@@ -49,7 +49,7 @@ namespace Common{
     constexpr auto Qty_Invalid=std::numeric_limits<<Qty>>::max();
     inline auto QtyToString(Qty qty)->std::string{
         if(UNLIKELY(qtyr==Qty_Invalid)){
-            return "IVALID";
+            return "INVALID";
         }
         return std::to_string(qty);
     }
@@ -57,7 +57,7 @@ namespace Common{
     constexpr auto Priority_Invalid=std::numeric_limits<<Priority>>::max();
     inline auto PriorityToString(Priority priority)->std::string{
         if(UNLIKELY(priority==Priority_Invalid)){
-            return "IVALID";
+            return "INVALID";
         }
         return std::to_string(priority);
     }

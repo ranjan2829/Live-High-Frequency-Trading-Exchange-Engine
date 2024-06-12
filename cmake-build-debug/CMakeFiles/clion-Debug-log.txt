@@ -1,4 +1,26 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/ranjanshahajishitole/CLionProjects/HFT-Developer-Codes -B /Users/ranjanshahajishitole/CLionProjects/HFT-Developer-Codes/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/ranjanshahajishitole/Desktop/Live-High-Frequency-Trading-Exchange -B /Users/ranjanshahajishitole/Desktop/Live-High-Frequency-Trading-Exchange/cmake-build-debug
+CMake Deprecation Warning:
+  Support for "Extra Generators" like
+
+    CodeBlocks
+
+  is deprecated and will be removed from a future version of CMake.  IDEs may
+  use the cmake-file-api(7) to view CMake-generated project build trees.
+
+
 -- Configuring done (0.1s)
--- Generating done (0.0s)
--- Build files have been written to: /Users/ranjanshahajishitole/CLionProjects/HFT-Developer-Codes/cmake-build-debug
+CMake Error at CMakeLists.txt:9 (add_executable):
+  Cannot find source file:
+
+    sample.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm
+  .ccm .cxxm .c++m .h .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90
+  .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:9 (add_executable):
+  No SOURCES given to target: HFT_Developer_Codes
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
