@@ -15,4 +15,5 @@ add_executable(HFT_Developer_Codes
         "Low Latency Building Blocks/thread.cpp"
         "Low Latency Building Blocks/memory_pool.h"
         "Low Latency Building Blocks/logging.h"
-        "Low Latency Building Blocks/logger.cpp")
+        "Low Latency Building Blocks/logger.cpp"
+        "Exchange Matching Engine /EXCHANGE/Order-Server/client_response.h")
