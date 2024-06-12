@@ -52,4 +52,21 @@ namespace Common{
         }
         return std::to_string(priority);
     }
+    enum class Side :int8_t{
+        INVALID=0;
+        BUY=1,
+        SELL=-1
+    };
+    inline auto sidetoString(Side side)->std::string{
+        switch(side){
+            case Side::BUY:
+            return "BUY";
+            case Side::SELL:
+            return "SELL";
+            case Side::INVALID:
+            return "INVALID";
+
+        }
+        return "UNKNOWN";
+    }
 }
