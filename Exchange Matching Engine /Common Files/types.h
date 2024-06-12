@@ -28,4 +28,28 @@ namespace Common{
         }
         return std::to_string(client);
     }
+    typedef uint64_t Price;
+    constexpr auto Price_Invalid=std::numeric_limits<<Price>>::max();
+    inline auto PriceToString(Price price)->std::string{
+        if(UNLIKELY(price==Price_Invalid)){
+            return "IVALID";
+        }
+        return std::to_string(price);
+    }
+    typedef int32_t Qty;
+    constexpr auto Qty_Invalid=std::numeric_limits<<Qty>>::max();
+    inline auto QtyToString(Qty qty)->std::string{
+        if(UNLIKELY(qtyr==Qty_Invalid)){
+            return "IVALID";
+        }
+        return std::to_string(qty);
+    }
+    typedef uint64_t Priority;
+    constexpr auto Priority_Invalid=std::numeric_limits<<Priority>>::max();
+    inline auto PriorityToString(Priority priority)->std::string{
+        if(UNLIKELY(priority==Priority_Invalid)){
+            return "IVALID";
+        }
+        return std::to_string(priority);
+    }
 }
