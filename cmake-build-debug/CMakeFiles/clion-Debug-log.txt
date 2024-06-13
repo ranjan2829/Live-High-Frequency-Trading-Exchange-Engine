@@ -8,7 +8,7 @@ CMake Deprecation Warning:
   use the cmake-file-api(7) to view CMake-generated project build trees.
 
 
--- Configuring done (0.1s)
+-- Configuring done (0.0s)
 CMake Error at CMakeLists.txt:9 (add_executable):
   Cannot find source file:
 

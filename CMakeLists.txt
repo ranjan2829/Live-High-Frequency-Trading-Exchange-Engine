@@ -18,4 +18,6 @@ add_executable(HFT_Developer_Codes
         "Low Latency Building Blocks/logger.cpp"
         "Exchange Matching Engine /EXCHANGE/Order-Server/client_response.h"
         "Exchange Matching Engine /EXCHANGE/Market-Update/market_update.h"
-        "Exchange Matching Engine /EXCHANGE/MatchingEngine/ME_order.h")
+        "Exchange Matching Engine /EXCHANGE/MatchingEngine/ME_order.h"
+        "Exchange Matching Engine /EXCHANGE/MatchingEngine/Matching_Engine.h"
+        "Exchange Matching Engine /EXCHANGE/MatchingEngine/me_order_book.h")
