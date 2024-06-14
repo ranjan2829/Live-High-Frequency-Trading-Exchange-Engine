@@ -20,4 +20,5 @@ add_executable(HFT_Developer_Codes
         "Exchange Matching Engine /EXCHANGE/Market-Update/market_update.h"
         "Exchange Matching Engine /EXCHANGE/MatchingEngine/ME_order.h"
         "Exchange Matching Engine /EXCHANGE/MatchingEngine/Matching_Engine.h"
-        "Exchange Matching Engine /EXCHANGE/MatchingEngine/me_order_book.h")
+        "Exchange Matching Engine /EXCHANGE/MatchingEngine/me_order_book.h"
+        "Exchange Matching Engine /EXCHANGE/MatchingEngine/MatchingEngine.cpp")
