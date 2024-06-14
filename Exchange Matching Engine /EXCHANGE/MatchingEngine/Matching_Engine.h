@@ -23,6 +23,30 @@ namespace Exchange{
 
 
 
+        auto processClientRequest(const MEClientRequest *client_request) noexcept{
+            auto order_book=ticker_order_book_[client_request->ticker_id_];
+
+        }
+
+
+
+        auto run () noexcept {
+            logger_.log("% :% % () %\n",__FILE__,__LINE__,__FUNCTION__,Common::getCurrentTimeStr(&time_str_t));
+            while(run_){
+                const auto me_client_request=incoming_requests_->getNextToread();
+                if(LIKELY(me_client_request)){
+                    logger_.log("%:% %() % Processing %\n", __FILE__, __LINE__, __FUNCTION__, Common::getCurrentTimeStr(&time_str_),
+                                me_client_request->toString());
+
+                    processClientRequest(me_client_request);
+                    incoming_requests_->updateReadIndex();
+
+                }
+            }
+        }
+
+
+
         MatchingEngine() =delete;
         MatchingEngine(const MatchEngine &)=delete;
         MatchtingEngine &operator =(const MatchingEngine &)=delete;
