@@ -28,4 +28,4 @@ This project is licensed under the [License Name]. See the [LICENSE](LICENSE) fi
 
 ## Contact 📞
 
-For questions or suggestions, contact the repository owner at [email@example.com].
+For questions or suggestions, contact the repository owner at [ranjan.shitole3129@gmail.com].
