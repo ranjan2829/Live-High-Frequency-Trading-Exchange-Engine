@@ -43,7 +43,15 @@ namespace Exchange{
                     break;
             }
         }
-        auto sendClientResponse
+        auto sendClientResponse(const MEClientResponse *client_response) noexcept{
+            logger_.log("%:% %() % Sending %\n", __FILE__, __LINE__, __FUNCTION__, Common::getCurrentTimeStr(&time_str_), client_response->toString());
+
+            auto next_write=outgoing_ogw_responses_->getNextToWriteTo();
+            *next_write=std::move(*client_response);
+            outgoing_ogw_responses_->updateWriteIndex();
+            
+      
+        }
 
 
 
