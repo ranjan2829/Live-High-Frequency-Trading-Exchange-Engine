@@ -12,4 +12,24 @@ MatchingEngine::MatchingEngine(ClientRequestLFQueue *client_requests,
     ticker_order_book_[i] = new MEOrderBook(i, &logger_, this);
   }
 }
+MatchingEngine::~MatchingEngine() {
+  run_ = false;
+  using namespace std::literals::chrono_literals;
+  std::this_thread::sleep_for(1s);
+  incoming_requests_ = nullptr;
+  outgoing_ogw_responses_ = nullptr;
+  outgoing_md_updates_ = nullptr;
+
+  for (auto &order_book : ticket_order_book_) {
+    delete order_book;
+    order_book = nullptr;
+  }
+}
+auto MatchingEngine::start() -> void {
+  run_ = true;
+  ASSERT(Common::createAndStartThread(-1, "Exchange/MatchingEngine",
+                                      [this]() { run(); }) != nullptr,
+         "Failed to start MatchingEngine thread.");
+}
+auto MatchingEngine::stop() -> void { run_ = false; }
 } // namespace Exchange
