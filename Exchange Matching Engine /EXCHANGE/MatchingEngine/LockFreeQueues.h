@@ -3,10 +3,19 @@
 #include <iostream>
 #include <vector>
 #include <atomic>
-
+#include <sstream>
+#include <string>
+#include <pthread.h>
 #include "macros.h"
 
 namespace Common {
+  // Function to convert pthread_t to string
+  inline std::string pthreadToString(pthread_t thread) {
+    std::ostringstream oss;
+    oss << thread;
+    return oss.str();
+  }
+
   template<typename T>
   class LFQueue final {
   public:
@@ -29,7 +38,7 @@ namespace Common {
 
     auto updateReadIndex() noexcept {
       next_read_index_ = (next_read_index_ + 1) % store_.size();
-      ASSERT(num_elements_ != 0, "Read an invalid element in:" + std::to_string(pthread_self()));
+      ASSERT(num_elements_ != 0, "Read an invalid element in:" + pthreadToString(pthread_self()));
       num_elements_--;
     }
 
