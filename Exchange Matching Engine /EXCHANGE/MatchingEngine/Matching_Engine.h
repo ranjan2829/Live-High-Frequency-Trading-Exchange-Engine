@@ -3,12 +3,13 @@
 //
 
 #pragma once
-#include "Exchange Matching Engine /Common Files/LockFreeQueues.h"
-#include "Exchange Matching Engine /Common Files/macros.h"
-#include "Exchange Matching Engine /Common Files/thread_utils.h"
-#include "Exchange Matching Engine /EXCHANGE/Market-Update/market_update.h"
-#include "Exchange Matching Engine /EXCHANGE/Order-Server/client_request.h"
-#include "Exchange Matching Engine /EXCHANGE/Order-Server/client_response.h"
+#include "LockFreeQueues.h"
+#include "macros.h"
+#include "thread_utils.h"
+#include "market_update.h"
+#include "client_request.h"
+#include "client_response.h"
+#include "LockFreeQueues.h"
 #include "me_order_book.h"
 
 namespace Exchange {
