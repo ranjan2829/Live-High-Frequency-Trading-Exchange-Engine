@@ -7,15 +7,15 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(HFT_Developer_Codes
-        sample.cpp
-        main.h
-        "Low Latency Building Blocks/macros.h"
-        "Low Latency Building Blocks/main.cpp"
-        "Low Latency Building Blocks/thread_utils.h"
-        "Low Latency Building Blocks/thread.cpp"
-        "Low Latency Building Blocks/memory_pool.h"
-        "Low Latency Building Blocks/logging.h"
-        "Low Latency Building Blocks/logger.cpp"
+
+
+        "macros.h"
+        "main.cpp"
+        "thread_utils.h"
+        "thread.cpp"
+        "memory_pool.h"
+        "logging.h"
+        "logger.cpp"
         "Exchange Matching Engine /EXCHANGE/Order-Server/client_response.h"
         "Exchange Matching Engine /EXCHANGE/Market-Update/market_update.h"
         "Exchange Matching Engine /EXCHANGE/MatchingEngine/ME_order.h"
