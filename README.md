@@ -141,7 +141,6 @@ This project is **private**. If you are interested in purchasing a license, plea
 ## Contact
 For any queries or licensing, please contact **Ranjan** at:
 - GitHub: [@ranjan2829](https://github.com/ranjan2829)
-- Email: [Your Email Here]
 
 ---
 
