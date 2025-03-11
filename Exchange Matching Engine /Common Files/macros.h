@@ -1,20 +1,23 @@
 #pragma once
 
+#include <cstring>
 #include <iostream>
-#include <string>
-#include <cstdlib>
 
+/// Branch prediction hints.
 #define LIKELY(x) __builtin_expect(!!(x), 1)
 #define UNLIKELY(x) __builtin_expect(!!(x), 0)
 
-void ASSERT(bool cond, const std::string &msg) {
-    if (!cond) {
-        std::cerr << msg << std::endl;
-        std::abort();
-    }
+/// Check condition and exit if not true.
+inline auto ASSERT(bool cond, const std::string &msg) noexcept {
+  if (UNLIKELY(!cond)) {
+    std::cerr << "ASSERT : " << msg << std::endl;
+
+    exit(EXIT_FAILURE);
+  }
 }
 
-void FATAL(const std::string &msg) {
-    std::cerr << "FATAL : " << msg << std::endl;
-    exit(EXIT_FAILURE);
+inline auto FATAL(const std::string &msg) noexcept {
+  std::cerr << "FATAL : " << msg << std::endl;
+
+  exit(EXIT_FAILURE);
 }
