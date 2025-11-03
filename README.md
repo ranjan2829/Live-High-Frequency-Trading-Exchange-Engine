@@ -1,6 +1,6 @@
 # Nanosecond High-Frequency Trading Exchange Engine
 
-Production-grade C++ trading system processing 8.3M orders/second with 89ns latency.
+Production-grade C++ trading system processing with 89ns latency.
 
 ## System Architecture
 
@@ -37,9 +37,7 @@ Production-grade C++ trading system processing 8.3M orders/second with 89ns late
 |--------|-------|--------|
 | Average Latency | 89 nanoseconds | Target: <100ns |
 | P99 Latency | 145 nanoseconds | Sub-microsecond |
-| Throughput | 8.3M orders/sec | High-frequency |
-| Orders Processed | 20,000+ verified | Scalable to billions |
-| Uptime | 99.99% | Production-grade |
+| Orders Processed | 20,000+ verified |
 | Crashes | 0 | Zero-error |
 
 ## Critical Optimizations
