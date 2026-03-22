@@ -116,11 +116,11 @@ namespace Trading {
 
     PositionKeeper(const PositionKeeper &) = delete;
 
-    PositionKeeper(const PositionKeeper &&) = delete;
+    PositionKeeper(PositionKeeper &&) = delete;
 
     PositionKeeper &operator=(const PositionKeeper &) = delete;
 
-    PositionKeeper &operator=(const PositionKeeper &&) = delete;
+    PositionKeeper &operator=(PositionKeeper &&) = delete;
 
   private:
     std::string time_str_;

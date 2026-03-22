@@ -122,11 +122,11 @@ namespace Trading {
 
     OrderManager(const OrderManager &) = delete;
 
-    OrderManager(const OrderManager &&) = delete;
+    OrderManager(OrderManager &&) = delete;
 
     OrderManager &operator=(const OrderManager &) = delete;
 
-    OrderManager &operator=(const OrderManager &&) = delete;
+    OrderManager &operator=(OrderManager &&) = delete;
 
   private:
     /// The parent trade engine object, used to send out client requests.

@@ -193,13 +193,13 @@ namespace Exchange {
         if (o_itr->next_order_ == itr->first_me_order_)
           break;
       }
-      sprintf(buf, " <px:%3s p:%3s n:%3s> %-3s @ %-5s(%-4s)",
+      snprintf(buf, sizeof(buf), " <px:%3s p:%3s n:%3s> %-3s @ %-5s(%-4s)",
               priceToString(itr->price_).c_str(), priceToString(itr->prev_entry_->price_).c_str(), priceToString(itr->next_entry_->price_).c_str(),
               priceToString(itr->price_).c_str(), qtyToString(qty).c_str(), std::to_string(num_orders).c_str());
       ss << buf;
       for (auto o_itr = itr->first_me_order_;; o_itr = o_itr->next_order_) {
         if (detailed) {
-          sprintf(buf, "[oid:%s q:%s p:%s n:%s] ",
+          snprintf(buf, sizeof(buf), "[oid:%s q:%s p:%s n:%s] ",
                   orderIdToString(o_itr->market_order_id_).c_str(), qtyToString(o_itr->qty_).c_str(),
                   orderIdToString(o_itr->prev_order_ ? o_itr->prev_order_->market_order_id_ : OrderId_INVALID).c_str(),
                   orderIdToString(o_itr->next_order_ ? o_itr->next_order_->market_order_id_ : OrderId_INVALID).c_str());

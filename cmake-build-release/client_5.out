@@ -1,5 +1,0 @@
-Set core affinity for Common/Logger trading_main_5.log 0x16f7ab000 to -1
-Set core affinity for Common/Logger trading_engine_5.log 0x16f837000 to -1
-Set core affinity for Trading/TradeEngine 0x16f8c3000 to -1
-Set core affinity for Common/Logger trading_order_gateway_5.log 0x16f94f000 to -1
-ASSERT : setSOTimestamp() failed. errno:Invalid argument

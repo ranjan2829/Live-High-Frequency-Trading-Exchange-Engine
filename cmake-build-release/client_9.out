@@ -1,7 +1,0 @@
-Set core affinity for Common/Logger trading_main_9.log 0x16f0c3000 to -1
-Set core affinity for Common/Logger trading_engine_9.log 0x16f14f000 to -1
-Set core affinity for Trading/TradeEngine 0x16f1db000 to -1
-Set core affinity for Common/Logger trading_order_gateway_9.log 0x16f267000 to -1
-Set core affinity for Trading/OrderGateway 0x16f2f3000 to -1
-Set core affinity for Common/Logger trading_market_data_consumer_9.log 0x16f37f000 to -1
-Set core affinity for Trading/MarketDataConsumer 0x16f40b000 to -1

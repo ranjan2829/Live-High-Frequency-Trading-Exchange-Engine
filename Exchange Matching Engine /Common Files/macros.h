@@ -3,9 +3,14 @@
 #include <cstring>
 #include <iostream>
 
-/// Branch prediction hints.
 #define LIKELY(x) __builtin_expect(!!(x), 1)
 #define UNLIKELY(x) __builtin_expect(!!(x), 0)
+
+#ifdef __APPLE__
+  #ifndef MSG_NOSIGNAL
+    #define MSG_NOSIGNAL 0
+  #endif
+#endif
 
 /// Check condition and exit if not true.
 inline auto ASSERT(bool cond, const std::string &msg) noexcept {

@@ -84,6 +84,5 @@ namespace Exchange {
 
 #pragma pack(pop) // Undo the packed binary structure directive moving forward.
 
-  /// Lock free queues of matching engine client order response messages.
-  typedef LFQueue<MEClientResponse> ClientResponseLFQueue;
+  using ClientResponseLFQueue = LFQueue<MEClientResponse>;
 }

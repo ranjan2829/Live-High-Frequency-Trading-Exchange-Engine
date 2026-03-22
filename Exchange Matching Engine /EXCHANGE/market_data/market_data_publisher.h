@@ -1,6 +1,8 @@
 #pragma once
 
+#include <atomic>
 #include <functional>
+#include <memory>
 
 #include "market_data/snapshot_synthesizer.h"
 
@@ -15,10 +17,9 @@ namespace Exchange {
       stop();
 
       using namespace std::literals::chrono_literals;
-      std::this_thread::sleep_for(5s);
+      std::this_thread::sleep_for(1s);
 
-      delete snapshot_synthesizer_;
-      snapshot_synthesizer_ = nullptr;
+      snapshot_synthesizer_.reset();
     }
 
     /// Start and stop the market data publisher main thread, as well as the internal snapshot synthesizer thread.
@@ -44,11 +45,11 @@ namespace Exchange {
 
     MarketDataPublisher(const MarketDataPublisher &) = delete;
 
-    MarketDataPublisher(const MarketDataPublisher &&) = delete;
+    MarketDataPublisher(MarketDataPublisher &&) = delete;
 
     MarketDataPublisher &operator=(const MarketDataPublisher &) = delete;
 
-    MarketDataPublisher &operator=(const MarketDataPublisher &&) = delete;
+    MarketDataPublisher &operator=(MarketDataPublisher &&) = delete;
 
   private:
     /// Sequencer number tracker on the incremental market data stream.
@@ -60,7 +61,7 @@ namespace Exchange {
     /// Lock free queue on which we forward the incremental market data updates to send to the snapshot synthesizer.
     MDPMarketUpdateLFQueue snapshot_md_updates_;
 
-    volatile bool run_ = false;
+    std::atomic<bool> run_ = {false};
 
     std::string time_str_;
     Logger logger_;
@@ -68,7 +69,7 @@ namespace Exchange {
     /// Multicast socket to represent the incremental market data stream.
     Common::McastSocket incremental_socket_;
 
-    /// Snapshot synthesizer which synthesizes and publishes limit order book snapshots on the snapshot multicast stream.
-    SnapshotSynthesizer *snapshot_synthesizer_ = nullptr;
+    std::unique_ptr<SnapshotSynthesizer> snapshot_synthesizer_;
+
   };
 }

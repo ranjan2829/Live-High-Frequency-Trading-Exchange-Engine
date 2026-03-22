@@ -52,11 +52,11 @@ namespace Trading {
 
     FeatureEngine(const FeatureEngine &) = delete;
 
-    FeatureEngine(const FeatureEngine &&) = delete;
+    FeatureEngine(FeatureEngine &&) = delete;
 
     FeatureEngine &operator=(const FeatureEngine &) = delete;
 
-    FeatureEngine &operator=(const FeatureEngine &&) = delete;
+    FeatureEngine &operator=(FeatureEngine &&) = delete;
 
   private:
     std::string time_str_;

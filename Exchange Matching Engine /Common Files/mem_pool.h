@@ -59,11 +59,11 @@ namespace Common {
 
     MemPool(const MemPool &) = delete;
 
-    MemPool(const MemPool &&) = delete;
+    MemPool(MemPool &&) = delete;
 
     MemPool &operator=(const MemPool &) = delete;
 
-    MemPool &operator=(const MemPool &&) = delete;
+    MemPool &operator=(MemPool &&) = delete;
 
   private:
     /// It is better to have one vector of structs with two objects than two vectors of one object.

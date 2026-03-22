@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <cstdio>
+#include <memory>
 
 #include "macros.h"
 #include "lf_queue.h"
@@ -202,22 +203,19 @@ namespace Common {
 
     Logger(const Logger &) = delete;
 
-    Logger(const Logger &&) = delete;
+    Logger(Logger &&) = delete;
 
     Logger &operator=(const Logger &) = delete;
 
-    Logger &operator=(const Logger &&) = delete;
+    Logger &operator=(Logger &&) = delete;
 
   private:
-    /// File to which the log entries will be written.
     const std::string file_name_;
     std::ofstream file_;
 
-    /// Lock free queue of log elements from main logging thread to background formatting and disk writer thread.
     LFQueue<LogElement> queue_;
     std::atomic<bool> running_ = {true};
 
-    /// Background logging thread.
-    std::thread *logger_thread_ = nullptr;
+    std::unique_ptr<std::thread> logger_thread_;
   };
 }

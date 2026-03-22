@@ -33,11 +33,9 @@ namespace Exchange {
     auto toString() const -> std::string;
   };
 
-  /// Hash map from OrderId -> MEOrder.
-  typedef std::array<MEOrder *, ME_MAX_ORDER_IDS> OrderHashMap;
+  using OrderHashMap = std::array<MEOrder *, ME_MAX_ORDER_IDS>;
 
-  /// Hash map from ClientId -> OrderId -> MEOrder.
-  typedef std::array<OrderHashMap, ME_MAX_NUM_CLIENTS> ClientOrderHashMap;
+  using ClientOrderHashMap = std::array<OrderHashMap, ME_MAX_NUM_CLIENTS>;
 
   /// Used by the matching engine to represent a price level in the limit order book.
   /// Internally maintains a list of MEOrder objects arranged in FIFO order.
@@ -70,6 +68,5 @@ namespace Exchange {
     }
   };
 
-  /// Hash map from Price -> MEOrdersAtPrice.
-  typedef std::array<MEOrdersAtPrice *, ME_MAX_PRICE_LEVELS> OrdersAtPriceHashMap;
+  using OrdersAtPriceHashMap = std::array<MEOrdersAtPrice *, ME_MAX_PRICE_LEVELS>;
 }

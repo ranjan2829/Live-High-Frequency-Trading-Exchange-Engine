@@ -92,11 +92,11 @@ namespace Trading {
 
     TradeEngine(const TradeEngine &) = delete;
 
-    TradeEngine(const TradeEngine &&) = delete;
+    TradeEngine(TradeEngine &&) = delete;
 
     TradeEngine &operator=(const TradeEngine &) = delete;
 
-    TradeEngine &operator=(const TradeEngine &&) = delete;
+    TradeEngine &operator=(TradeEngine &&) = delete;
 
   private:
     /// This trade engine's ClientId.
@@ -114,7 +114,7 @@ namespace Trading {
     Exchange::MEMarketUpdateLFQueue *incoming_md_updates_ = nullptr;
 
     Nanos last_event_time_ = 0;
-    volatile bool run_ = false;
+    std::atomic<bool> run_ = {false};
 
     std::string time_str_;
     Logger logger_;

@@ -148,10 +148,9 @@ namespace Common {
 class LatencyMeasure {
 private:
     uint64_t start_time_;
-    const char* name_;
     
 public:
-    explicit LatencyMeasure(const char* name) : name_(name) {
+    explicit LatencyMeasure([[maybe_unused]] const char* name) {
         start_time_ = Common::NanosecondTimer::now_ns();
     }
     

@@ -62,11 +62,11 @@ namespace Trading {
 
     MarketMaker(const MarketMaker &) = delete;
 
-    MarketMaker(const MarketMaker &&) = delete;
+    MarketMaker(MarketMaker &&) = delete;
 
     MarketMaker &operator=(const MarketMaker &) = delete;
 
-    MarketMaker &operator=(const MarketMaker &&) = delete;
+    MarketMaker &operator=(MarketMaker &&) = delete;
 
   private:
     /// The feature engine that drives the market making algorithm.

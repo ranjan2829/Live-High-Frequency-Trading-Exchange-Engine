@@ -41,11 +41,11 @@ namespace Trading {
 
     OrderGateway(const OrderGateway &) = delete;
 
-    OrderGateway(const OrderGateway &&) = delete;
+    OrderGateway(OrderGateway &&) = delete;
 
     OrderGateway &operator=(const OrderGateway &) = delete;
 
-    OrderGateway &operator=(const OrderGateway &&) = delete;
+    OrderGateway &operator=(OrderGateway &&) = delete;
 
   private:
     const ClientId client_id_;
@@ -61,7 +61,7 @@ namespace Trading {
     /// Lock free queue on which we write client responses which we read and processed from the exchange, to be consumed by the trade engine.
     Exchange::ClientResponseLFQueue *incoming_responses_ = nullptr;
 
-    volatile bool run_ = false;
+    std::atomic<bool> run_ = {false};
 
     std::string time_str_;
     Logger logger_;

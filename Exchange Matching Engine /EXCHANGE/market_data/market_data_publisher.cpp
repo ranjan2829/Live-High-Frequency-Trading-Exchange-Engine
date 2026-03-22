@@ -8,7 +8,7 @@ namespace Exchange {
         run_(false), logger_("exchange_market_data_publisher.log"), incremental_socket_(logger_) {
     ASSERT(incremental_socket_.init(incremental_ip, iface, incremental_port, /*is_listening*/ false) >= 0,
            "Unable to create incremental mcast socket. error:" + std::string(std::strerror(errno)));
-    snapshot_synthesizer_ = new SnapshotSynthesizer(&snapshot_md_updates_, iface, snapshot_ip, snapshot_port);
+    snapshot_synthesizer_ = std::make_unique<SnapshotSynthesizer>(&snapshot_md_updates_, iface, snapshot_ip, snapshot_port);
   }
 
   /// Main run loop for this thread - consumes market updates from the lock free queue from the matching engine, publishes them on the incremental multicast stream and forwards them to the snapshot synthesizer.

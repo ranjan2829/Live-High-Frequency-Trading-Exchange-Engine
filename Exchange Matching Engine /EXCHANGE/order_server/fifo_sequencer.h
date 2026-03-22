@@ -23,7 +23,7 @@ namespace Exchange {
       if (pending_size_ >= pending_client_requests_.size()) {
         FATAL("Too many pending requests");
       }
-      pending_client_requests_.at(pending_size_++) = std::move(RecvTimeClientRequest{rx_time, request});
+      pending_client_requests_.at(pending_size_++) = RecvTimeClientRequest{rx_time, request};
     }
 
     /// Sort pending client requests in ascending receive time order and then write them to the lock free queue for the matching engine to consume from.
@@ -55,11 +55,11 @@ namespace Exchange {
 
     FIFOSequencer(const FIFOSequencer &) = delete;
 
-    FIFOSequencer(const FIFOSequencer &&) = delete;
+    FIFOSequencer(FIFOSequencer &&) = delete;
 
     FIFOSequencer &operator=(const FIFOSequencer &) = delete;
 
-    FIFOSequencer &operator=(const FIFOSequencer &&) = delete;
+    FIFOSequencer &operator=(FIFOSequencer &&) = delete;
 
   private:
     /// Lock free queue used to publish client requests to, so that the matching engine can consume them.
@@ -73,7 +73,7 @@ namespace Exchange {
       Nanos recv_time_ = 0;
       MEClientRequest request_;
 
-      auto operator<(const RecvTimeClientRequest &rhs) const {
+      bool operator<(const RecvTimeClientRequest &rhs) const {
         return (recv_time_ < rhs.recv_time_);
       }
     };

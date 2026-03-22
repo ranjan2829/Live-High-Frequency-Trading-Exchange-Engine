@@ -63,11 +63,11 @@ namespace Trading {
 
     MarketOrderBook(const MarketOrderBook &) = delete;
 
-    MarketOrderBook(const MarketOrderBook &&) = delete;
+    MarketOrderBook(MarketOrderBook &&) = delete;
 
     MarketOrderBook &operator=(const MarketOrderBook &) = delete;
 
-    MarketOrderBook &operator=(const MarketOrderBook &&) = delete;
+    MarketOrderBook &operator=(MarketOrderBook &&) = delete;
 
   private:
     const TickerId ticker_id_;
@@ -223,6 +223,5 @@ namespace Trading {
     }
   };
 
-  /// Hash map from TickerId -> MarketOrderBook.
-  typedef std::array<MarketOrderBook *, ME_MAX_TICKERS> MarketOrderBookHashMap;
+  using MarketOrderBookHashMap = std::array<MarketOrderBook *, ME_MAX_TICKERS>;
 }

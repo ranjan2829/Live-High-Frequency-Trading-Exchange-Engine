@@ -63,11 +63,11 @@ namespace Trading {
 
     LiquidityTaker(const LiquidityTaker &) = delete;
 
-    LiquidityTaker(const LiquidityTaker &&) = delete;
+    LiquidityTaker(LiquidityTaker &&) = delete;
 
     LiquidityTaker &operator=(const LiquidityTaker &) = delete;
 
-    LiquidityTaker &operator=(const LiquidityTaker &&) = delete;
+    LiquidityTaker &operator=(LiquidityTaker &&) = delete;
 
   private:
     /// The feature engine that drives the liquidity taking algorithm.

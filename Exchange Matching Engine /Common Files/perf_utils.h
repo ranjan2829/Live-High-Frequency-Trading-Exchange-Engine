@@ -1,7 +1,9 @@
 #pragma once
 
+#include <chrono>
+#include <string>
+
 namespace Common {
-  /// Read from the TSC register and return a uint64_t value to represent elapsed CPU clock cycles.
   inline auto rdtsc() noexcept {
     return std::chrono::duration_cast<std::chrono::nanoseconds>(
       std::chrono::high_resolution_clock::now().time_since_epoch()).count();

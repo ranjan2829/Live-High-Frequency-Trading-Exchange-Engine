@@ -1,5 +1,7 @@
 #pragma once
 
+#include <atomic>
+
 #include "types.h"
 #include "thread_utils.h"
 #include "lf_queue.h"
@@ -40,11 +42,11 @@ namespace Exchange {
 
     SnapshotSynthesizer(const SnapshotSynthesizer &) = delete;
 
-    SnapshotSynthesizer(const SnapshotSynthesizer &&) = delete;
+    SnapshotSynthesizer(SnapshotSynthesizer &&) = delete;
 
     SnapshotSynthesizer &operator=(const SnapshotSynthesizer &) = delete;
 
-    SnapshotSynthesizer &operator=(const SnapshotSynthesizer &&) = delete;
+    SnapshotSynthesizer &operator=(SnapshotSynthesizer &&) = delete;
 
   private:
     /// Lock free queue containing incremental market data updates coming in from the market data publisher.
@@ -52,7 +54,7 @@ namespace Exchange {
 
     Logger logger_;
 
-    volatile bool run_ = false;
+    std::atomic<bool> run_ = {false};
 
     std::string time_str_;
 

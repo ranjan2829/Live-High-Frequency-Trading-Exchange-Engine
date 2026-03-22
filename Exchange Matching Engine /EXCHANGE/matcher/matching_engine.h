@@ -1,5 +1,7 @@
 #pragma once
 
+#include <atomic>
+
 #include "thread_utils.h"
 #include "lf_queue.h"
 #include "macros.h"
@@ -103,11 +105,11 @@ namespace Exchange {
 
     MatchingEngine(const MatchingEngine &) = delete;
 
-    MatchingEngine(const MatchingEngine &&) = delete;
+    MatchingEngine(MatchingEngine &&) = delete;
 
     MatchingEngine &operator=(const MatchingEngine &) = delete;
 
-    MatchingEngine &operator=(const MatchingEngine &&) = delete;
+    MatchingEngine &operator=(MatchingEngine &&) = delete;
 
   private:
     /// Hash map container from TickerId -> MEOrderBook.
@@ -121,7 +123,7 @@ namespace Exchange {
     ClientResponseLFQueue *outgoing_ogw_responses_ = nullptr;
     MEMarketUpdateLFQueue *outgoing_md_updates_ = nullptr;
 
-    volatile bool run_ = false;
+    std::atomic<bool> run_ = {false};
 
     std::string time_str_;
     Logger logger_;

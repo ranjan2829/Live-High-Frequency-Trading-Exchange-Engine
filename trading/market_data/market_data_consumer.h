@@ -39,11 +39,11 @@ namespace Trading {
 
     MarketDataConsumer(const MarketDataConsumer &) = delete;
 
-    MarketDataConsumer(const MarketDataConsumer &&) = delete;
+    MarketDataConsumer(MarketDataConsumer &&) = delete;
 
     MarketDataConsumer &operator=(const MarketDataConsumer &) = delete;
 
-    MarketDataConsumer &operator=(const MarketDataConsumer &&) = delete;
+    MarketDataConsumer &operator=(MarketDataConsumer &&) = delete;
 
   private:
     /// Track the next expected sequence number on the incremental market data stream, used to detect gaps / drops.
@@ -52,7 +52,7 @@ namespace Trading {
     /// Lock free queue on which decoded market data updates are pushed to, to be consumed by the trade engine.
     Exchange::MEMarketUpdateLFQueue *incoming_md_updates_ = nullptr;
 
-    volatile bool run_ = false;
+    std::atomic<bool> run_ = {false};
 
     std::string time_str_;
     Logger logger_;
@@ -68,7 +68,7 @@ namespace Trading {
     const int snapshot_port_;
 
     /// Containers to queue up market data updates from the snapshot and incremental channels, queued up in order of increasing sequence numbers.
-    typedef std::map<size_t, Exchange::MEMarketUpdate> QueuedMarketUpdates;
+    using QueuedMarketUpdates = std::map<size_t, Exchange::MEMarketUpdate>;
     QueuedMarketUpdates snapshot_queued_msgs_, incremental_queued_msgs_;
 
   private:

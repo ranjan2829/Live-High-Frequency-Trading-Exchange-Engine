@@ -90,7 +90,6 @@ namespace Exchange {
 
 #pragma pack(pop) // Undo the packed binary structure directive moving forward.
 
-  /// Lock free queues of matching engine market update messages and market data publisher market updates messages respectively.
-  typedef Common::LFQueue<Exchange::MEMarketUpdate> MEMarketUpdateLFQueue;
-  typedef Common::LFQueue<Exchange::MDPMarketUpdate> MDPMarketUpdateLFQueue;
+  using MEMarketUpdateLFQueue = Common::LFQueue<Exchange::MEMarketUpdate>;
+  using MDPMarketUpdateLFQueue = Common::LFQueue<Exchange::MDPMarketUpdate>;
 }

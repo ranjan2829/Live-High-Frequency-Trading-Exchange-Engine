@@ -68,8 +68,7 @@ namespace Trading {
     }
   };
 
-  /// Hash map from TickerId -> RiskInfo.
-  typedef std::array<RiskInfo, ME_MAX_TICKERS> TickerRiskInfoHashMap;
+  using TickerRiskInfoHashMap = std::array<RiskInfo, ME_MAX_TICKERS>;
 
   /// Top level risk manager class to compute and check risk across all trading instruments.
   class RiskManager {
@@ -85,15 +84,15 @@ namespace Trading {
 
     RiskManager(const RiskManager &) = delete;
 
-    RiskManager(const RiskManager &&) = delete;
+    RiskManager(RiskManager &&) = delete;
 
     RiskManager &operator=(const RiskManager &) = delete;
 
-    RiskManager &operator=(const RiskManager &&) = delete;
+    RiskManager &operator=(RiskManager &&) = delete;
 
   private:
     std::string time_str_;
-    Common::Logger *logger_ = nullptr;
+    [[maybe_unused]] Common::Logger *logger_ = nullptr;
 
     /// Hash map container from TickerId -> RiskInfo.
     TickerRiskInfoHashMap ticker_risk_;

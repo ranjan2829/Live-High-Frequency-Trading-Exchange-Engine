@@ -1,4 +1,0 @@
-/Users/ranjanshahajishitole/Desktop/GIthub/Live-High-Frequency-Trading-Exchange-Engine/cmake-build-release/CMakeFiles/exchange_main.dir
-/Users/ranjanshahajishitole/Desktop/GIthub/Live-High-Frequency-Trading-Exchange-Engine/cmake-build-release/CMakeFiles/trading_main.dir
-/Users/ranjanshahajishitole/Desktop/GIthub/Live-High-Frequency-Trading-Exchange-Engine/cmake-build-release/CMakeFiles/edit_cache.dir
-/Users/ranjanshahajishitole/Desktop/GIthub/Live-High-Frequency-Trading-Exchange-Engine/cmake-build-release/CMakeFiles/rebuild_cache.dir

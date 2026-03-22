@@ -56,9 +56,7 @@ namespace Trading {
     }
   };
 
-  /// Hash map from Side -> OMOrder.
-  typedef std::array<OMOrder, sideToIndex(Side::MAX) + 1> OMOrderSideHashMap;
+  using OMOrderSideHashMap = std::array<OMOrder, sideToIndex(Side::MAX) + 1>;
 
-  /// Hash map from TickerId -> Side -> OMOrder.
-  typedef std::array<OMOrderSideHashMap, ME_MAX_TICKERS> OMOrderTickerSideHashMap;
+  using OMOrderTickerSideHashMap = std::array<OMOrderSideHashMap, ME_MAX_TICKERS>;
 }

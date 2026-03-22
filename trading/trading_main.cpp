@@ -1,5 +1,7 @@
 #include <csignal>
 #include <vector>
+#include <random>
+#include <memory>
 
 #include "types.h"
 #include "time_utils.h"
@@ -8,11 +10,10 @@
 #include "market_data_consumer.h"
 #include "logging.h"
 
-/// Main components.
-Common::Logger *logger = nullptr;
-Trading::TradeEngine *trade_engine = nullptr;
-Trading::MarketDataConsumer *market_data_consumer = nullptr;
-Trading::OrderGateway *order_gateway = nullptr;
+static std::unique_ptr<Common::Logger> logger;
+static std::unique_ptr<Trading::TradeEngine> trade_engine;
+static std::unique_ptr<Trading::MarketDataConsumer> market_data_consumer;
+static std::unique_ptr<Trading::OrderGateway> order_gateway;
 
 /// ./trading_main CLIENT_ID ALGO_TYPE [CLIP_1 THRESH_1 MAX_ORDER_SIZE_1 MAX_POS_1 MAX_LOSS_1] [CLIP_2 THRESH_2 MAX_ORDER_SIZE_2 MAX_POS_2 MAX_LOSS_2] ...
 int main(int argc, char **argv) {
@@ -20,12 +21,11 @@ int main(int argc, char **argv) {
     FATAL("USAGE trading_main CLIENT_ID ALGO_TYPE [CLIP_1 THRESH_1 MAX_ORDER_SIZE_1 MAX_POS_1 MAX_LOSS_1] [CLIP_2 THRESH_2 MAX_ORDER_SIZE_2 MAX_POS_2 MAX_LOSS_2] ...");
   }
 
-  const Common::ClientId client_id = atoi(argv[1]);
-  srand(client_id);
+  const Common::ClientId client_id = static_cast<Common::ClientId>(std::stoi(argv[1]));
 
   const auto algo_type = stringToAlgoType(argv[2]);
 
-  logger = new Common::Logger("trading_main_" + std::to_string(client_id) + ".log");
+  logger = std::make_unique<Common::Logger>("trading_main_" + std::to_string(client_id) + ".log");
 
   // Removed sleep_time - using event-driven architecture for nanosecond performance
 
@@ -42,18 +42,18 @@ int main(int argc, char **argv) {
   // [CLIP_1 THRESH_1 MAX_ORDER_SIZE_1 MAX_POS_1 MAX_LOSS_1] [CLIP_2 THRESH_2 MAX_ORDER_SIZE_2 MAX_POS_2 MAX_LOSS_2] ...
   size_t next_ticker_id = 0;
   for (int i = 3; i < argc; i += 5, ++next_ticker_id) {
-    ticker_cfg.at(next_ticker_id) = {static_cast<Qty>(std::atoi(argv[i])), std::atof(argv[i + 1]),
-                                     {static_cast<Qty>(std::atoi(argv[i + 2])),
-                                      static_cast<Qty>(std::atoi(argv[i + 3])),
-                                      std::atof(argv[i + 4])}};
+    ticker_cfg.at(next_ticker_id) = {static_cast<Qty>(std::stoi(argv[i])), std::stod(argv[i + 1]),
+                                     {static_cast<Qty>(std::stoi(argv[i + 2])),
+                                      static_cast<Qty>(std::stoi(argv[i + 3])),
+                                      std::stod(argv[i + 4])}};
   }
 
   logger->log("%:% %() % Starting Trade Engine...\n", __FILE__, __LINE__, __FUNCTION__, Common::getCurrentTimeStr(&time_str));
-  trade_engine = new Trading::TradeEngine(client_id, algo_type,
-                                          ticker_cfg,
-                                          &client_requests,
-                                          &client_responses,
-                                          &market_updates);
+  trade_engine = std::make_unique<Trading::TradeEngine>(client_id, algo_type,
+                                                         ticker_cfg,
+                                                         &client_requests,
+                                                         &client_responses,
+                                                         &market_updates);
   trade_engine->start();
 
   const std::string order_gw_ip = "127.0.0.1";
@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
   const int order_gw_port = 12345;
 
   logger->log("%:% %() % Starting Order Gateway...\n", __FILE__, __LINE__, __FUNCTION__, Common::getCurrentTimeStr(&time_str));
-  order_gateway = new Trading::OrderGateway(client_id, &client_requests, &client_responses, order_gw_ip, order_gw_iface, order_gw_port);
+  order_gateway = std::make_unique<Trading::OrderGateway>(client_id, &client_requests, &client_responses, order_gw_ip, order_gw_iface, order_gw_port);
   order_gateway->start();
 
   const std::string mkt_data_iface = "lo";
@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
   const int incremental_port = 20001;
 
   logger->log("%:% %() % Starting Market Data Consumer...\n", __FILE__, __LINE__, __FUNCTION__, Common::getCurrentTimeStr(&time_str));
-  market_data_consumer = new Trading::MarketDataConsumer(client_id, &market_updates, mkt_data_iface, snapshot_ip, snapshot_port, incremental_ip, incremental_port);
+  market_data_consumer = std::make_unique<Trading::MarketDataConsumer>(client_id, &market_updates, mkt_data_iface, snapshot_ip, snapshot_port, incremental_ip, incremental_port);
   market_data_consumer->start();
 
   // Removed 10 second sleep - using event-driven initialization
@@ -82,17 +82,25 @@ int main(int argc, char **argv) {
     Common::OrderId order_id = client_id * 1000;
     std::vector<Exchange::MEClientRequest> client_requests_vec;
     std::array<Price, ME_MAX_TICKERS> ticker_base_price;
+
+    std::mt19937 rng(client_id);
+    std::uniform_int_distribution<Price> base_price_dist(100, 199);
+    std::uniform_int_distribution<Common::TickerId> ticker_dist(0, Common::ME_MAX_TICKERS - 1);
+    std::uniform_int_distribution<Price> price_offset_dist(1, 10);
+    std::uniform_int_distribution<Qty> qty_dist(2, 101);
+    std::uniform_int_distribution<int> side_dist(0, 1);
+
     for (size_t i = 0; i < ME_MAX_TICKERS; ++i)
-      ticker_base_price[i] = (rand() % 100) + 100;
+      ticker_base_price[i] = base_price_dist(rng);
     const size_t ORDERS_PER_CLIENT = 100000000;
     
     auto start_time = Common::getCurrentNanos();
     
     for (size_t i = 0; i < ORDERS_PER_CLIENT; ++i) {
-      const Common::TickerId ticker_id = rand() % Common::ME_MAX_TICKERS;
-      const Price price = ticker_base_price[ticker_id] + (rand() % 10) + 1;
-      const Qty qty = 1 + (rand() % 100) + 1;
-      const Side side = (rand() % 2 ? Common::Side::BUY : Common::Side::SELL);
+      const Common::TickerId ticker_id = ticker_dist(rng);
+      const Price price = ticker_base_price[ticker_id] + price_offset_dist(rng);
+      const Qty qty = qty_dist(rng);
+      const Side side = (side_dist(rng) ? Common::Side::BUY : Common::Side::SELL);
 
       auto order_start = Common::getCurrentNanos();
       
@@ -100,10 +108,11 @@ int main(int argc, char **argv) {
                                             price, qty};
       trade_engine->sendClientRequest(&new_request);
       
-      auto order_latency = Common::getCurrentNanos() - order_start;
+      [[maybe_unused]] auto order_latency = Common::getCurrentNanos() - order_start;
 
       client_requests_vec.push_back(new_request);
-      const auto cxl_index = rand() % client_requests_vec.size();
+      std::uniform_int_distribution<size_t> cxl_dist(0, client_requests_vec.size() - 1);
+      const auto cxl_index = cxl_dist(rng);
       auto cxl_request = client_requests_vec[cxl_index];
       cxl_request.type_ = Exchange::ClientRequestType::CANCEL;
       trade_engine->sendClientRequest(&cxl_request);
@@ -130,14 +139,10 @@ int main(int argc, char **argv) {
   market_data_consumer->stop();
   order_gateway->stop();
 
-  delete logger;
-  logger = nullptr;
-  delete trade_engine;
-  trade_engine = nullptr;
-  delete market_data_consumer;
-  market_data_consumer = nullptr;
-  delete order_gateway;
-  order_gateway = nullptr;
+  order_gateway.reset();
+  market_data_consumer.reset();
+  trade_engine.reset();
+  logger.reset();
 
-  exit(EXIT_SUCCESS);
+  return EXIT_SUCCESS;
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <functional>
 
 #include "thread_utils.h"
@@ -105,11 +106,11 @@ namespace Exchange {
 
     OrderServer(const OrderServer &) = delete;
 
-    OrderServer(const OrderServer &&) = delete;
+    OrderServer(OrderServer &&) = delete;
 
     OrderServer &operator=(const OrderServer &) = delete;
 
-    OrderServer &operator=(const OrderServer &&) = delete;
+    OrderServer &operator=(OrderServer &&) = delete;
 
   private:
     const std::string iface_;
@@ -118,7 +119,7 @@ namespace Exchange {
     /// Lock free queue of outgoing client responses to be sent out to connected clients.
     ClientResponseLFQueue *outgoing_responses_ = nullptr;
 
-    volatile bool run_ = false;
+    std::atomic<bool> run_ = {false};
 
     std::string time_str_;
     Logger logger_;

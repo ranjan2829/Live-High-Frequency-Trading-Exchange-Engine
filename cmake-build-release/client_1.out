@@ -1,7 +1,0 @@
-Set core affinity for Common/Logger trading_main_1.log 0x16be5b000 to -1
-Set core affinity for Common/Logger trading_engine_1.log 0x16bee7000 to -1
-Set core affinity for Trading/TradeEngine 0x16bf73000 to -1
-Set core affinity for Common/Logger trading_order_gateway_1.log 0x16bfff000 to -1
-Set core affinity for Trading/OrderGateway 0x16c08b000 to -1
-Set core affinity for Common/Logger trading_market_data_consumer_1.log 0x16c117000 to -1
-ASSERT : bind() failed. errno:%Address already in use

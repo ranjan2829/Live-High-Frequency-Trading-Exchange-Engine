@@ -52,7 +52,7 @@ namespace Common {
   constexpr int MaxTCPServerBacklog = 1024;
 
   /// Convert interface name "eth0" to ip "123.123.123.123".
-  inline auto getIfaceIP(const std::string &iface) -> std::string {
+  [[nodiscard]] inline auto getIfaceIP(const std::string &iface) -> std::string {
     char buf[NI_MAXHOST] = {'\0'};
     ifaddrs *ifaddr = nullptr;
 
@@ -70,7 +70,7 @@ namespace Common {
   }
 
   /// Sockets will not block on read, but instead return immediately if data is not available.
-  inline auto setNonBlocking(int fd) -> bool {
+  [[nodiscard]] inline auto setNonBlocking(int fd) -> bool {
     const auto flags = fcntl(fd, F_GETFL, 0);
     if (flags & O_NONBLOCK)
       return true;
@@ -78,13 +78,13 @@ namespace Common {
   }
 
   /// Disable Nagle's algorithm and associated delays.
-  inline auto disableNagle(int fd) -> bool {
+  [[nodiscard]] inline auto disableNagle(int fd) -> bool {
     int one = 1;
     return (setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, reinterpret_cast<void *>(&one), sizeof(one)) != -1);
   }
 
   /// Allow software receive timestamps on incoming packets.
-  inline auto setSOTimestamp(int fd) -> bool {
+  [[nodiscard]] inline auto setSOTimestamp(int fd) -> bool {
     int one = 1;
     return (setsockopt(fd, SOL_SOCKET, SO_TIMESTAMP, reinterpret_cast<void *>(&one), sizeof(one)) != -1);
   }

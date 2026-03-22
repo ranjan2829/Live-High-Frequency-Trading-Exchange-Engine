@@ -33,11 +33,11 @@ namespace Exchange {
 
     MEOrderBook(const MEOrderBook &) = delete;
 
-    MEOrderBook(const MEOrderBook &&) = delete;
+    MEOrderBook(MEOrderBook &&) = delete;
 
     MEOrderBook &operator=(const MEOrderBook &) = delete;
 
-    MEOrderBook &operator=(const MEOrderBook &&) = delete;
+    MEOrderBook &operator=(MEOrderBook &&) = delete;
 
   private:
     TickerId ticker_id_ = TickerId_INVALID;
@@ -228,6 +228,5 @@ namespace Exchange {
     }
   };
 
-  /// A hash map from TickerId -> MEOrderBook.
-  typedef std::array<MEOrderBook *, ME_MAX_TICKERS> OrderBookHashMap;
+  using OrderBookHashMap = std::array<MEOrderBook *, ME_MAX_TICKERS>;
 }

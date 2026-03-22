@@ -28,8 +28,7 @@ namespace Trading {
     auto toString() const -> std::string;
   };
 
-  /// Hash map from OrderId -> MarketOrder.
-  typedef std::array<MarketOrder *, ME_MAX_ORDER_IDS> OrderHashMap;
+  using OrderHashMap = std::array<MarketOrder *, ME_MAX_ORDER_IDS>;
 
   /// Used by the trade engine to represent a price level in the limit order book.
   /// Internally maintains a list of MarketOrder objects arranged in FIFO order.
@@ -62,8 +61,7 @@ namespace Trading {
     }
   };
 
-  /// Hash map from Price -> MarketOrdersAtPrice.
-  typedef std::array<MarketOrdersAtPrice *, ME_MAX_PRICE_LEVELS> OrdersAtPriceHashMap;
+  using OrdersAtPriceHashMap = std::array<MarketOrdersAtPrice *, ME_MAX_PRICE_LEVELS>;
 
   /// Represents a Best Bid Offer (BBO) abstraction for components which only need a small summary of top of book price and liquidity instead of the full order book.
   struct BBO {

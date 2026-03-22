@@ -7,8 +7,7 @@
 #include "perf_utils.h"
 
 namespace Common {
-  /// Represent a nanosecond timestamp.
-  typedef int64_t Nanos;
+  using Nanos = int64_t;
 
   /// Convert between nanos, micros, millis and secs.
   constexpr Nanos NANOS_TO_MICROS = 1000;
@@ -29,7 +28,7 @@ namespace Common {
     const auto time = std::chrono::system_clock::to_time_t(clock);
 
     char nanos_str[24];
-    sprintf(nanos_str, "%.8s.%09ld", ctime(&time) + 11, std::chrono::duration_cast<std::chrono::nanoseconds>(clock.time_since_epoch()).count() % NANOS_TO_SECS);
+    snprintf(nanos_str, sizeof(nanos_str), "%.8s.%09lld", ctime(&time) + 11, static_cast<long long>(std::chrono::duration_cast<std::chrono::nanoseconds>(clock.time_since_epoch()).count() % NANOS_TO_SECS));
     time_str->assign(nanos_str);
 
     return *time_str;

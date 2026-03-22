@@ -1,12 +1,13 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
 
-project(NanosecondHFT)
+project(NanosecondHFT LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Production-grade optimization
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -DNDEBUG")
-set(CMAKE_CXX_FLAGS_DEBUG "-O2 -g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -mtune=native -DNDEBUG -flto -funroll-loops -fomit-frame-pointer -ffast-math -falign-functions=64 -falign-loops=64")
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3 -fsanitize=address,undefined -fno-omit-frame-pointer")
 
 # Include directories
 include_directories("Exchange Matching Engine /Common Files")
@@ -40,6 +41,7 @@ add_executable(exchange_main
     ${COMMON_SOURCES}
 )
 
+target_compile_options(exchange_main PRIVATE -Wall -Wextra -Wpedantic -Wno-unused-parameter)
 target_link_libraries(exchange_main pthread)
 
 # Trading client
@@ -57,4 +59,5 @@ add_executable(trading_main
     ${COMMON_SOURCES}
 )
 
+target_compile_options(trading_main PRIVATE -Wall -Wextra -Wpedantic -Wno-unused-parameter)
 target_link_libraries(trading_main pthread)
